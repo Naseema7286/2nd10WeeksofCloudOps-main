@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image:913524910759.dkr.ecr.ap-south-1.amazonaws.com/backend:latest
+        image: 913524910759.dkr.ecr.ap-south-1.amazonaws.com/backend:latest  # Added the missing colon between image name and tag
         ports:
         - containerPort: 80
         env:
