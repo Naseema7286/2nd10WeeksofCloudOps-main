@@ -26,11 +26,9 @@ pipeline {
             steps {
                 dir('client') {
                     withSonarQubeEnv('soanar-server') {
-                        sh ''' sonar-scanner  \
-                        -Dsonar.projectKey=project3tier \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://35.175.231.15:9000 \
-                        -Dsonar.login=squ_bd869d18f2e350037f3be3a2f597110df2e94f2b '''
+                        sh ''' $SCANNER_HOME/bin/sonar-scanner \
+                        -Dsonar.projectName=project3tier \
+                        -Dsonar.projectKey=project3tier '''
                     }
                 }
             }
