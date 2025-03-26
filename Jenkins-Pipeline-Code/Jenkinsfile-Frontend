@@ -26,9 +26,11 @@ pipeline {
             steps {
                 dir('client') {
                     withSonarQubeEnv('sonar-server') {
-                        sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=three-tier-frontend \
-                        -Dsonar.projectKey=three-tier-frontend '''
+                        sh ''' sonar-scanner \
+                        -Dsonar.projectKey=project3tier \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://35.175.231.15:9000 \
+                        -Dsonar.login=squ_bd869d18f2e350037f3be3a2f597110df2e94f2b '''
                     }
                 }
             }
@@ -36,7 +38,7 @@ pipeline {
         stage('Quality Check') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token' 
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-scanner' 
                 }
             }
         }
