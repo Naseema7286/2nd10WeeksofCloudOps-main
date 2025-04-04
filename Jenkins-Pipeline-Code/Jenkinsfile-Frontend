@@ -25,10 +25,10 @@ pipeline {
         stage('Sonarqube Analysis') {
             steps {
                 dir('client') {
-                    withSonarQubeEnv('soanar-server') {
+                    withSonarQubeEnv('sonar-server') {
                         sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=project3tier \
-                        -Dsonar.projectKey=project3tier '''
+                        -Dsonar.projectName=three-tier-frontend \
+                        -Dsonar.projectKey=three-tier-frontend '''
                     }
                 }
             }
