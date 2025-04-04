@@ -6,8 +6,8 @@ pipeline {
     }
     environment  {
         SCANNER_HOME=tool 'sonar-scanner'
-        AWS_ACCOUNT_ID = credentials('account_id')
-        AWS_ECR_REPO_NAME = credentials('Ecr_repo1')
+        AWS_ACCOUNT_ID = credentials('ACCOUNT_ID')
+        AWS_ECR_REPO_NAME = credentials('ECR_REPO1')
         AWS_DEFAULT_REGION = 'us-east-1'
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/"
     }
@@ -55,7 +55,7 @@ pipeline {
         stage("ECR Image Pushing") {
             steps {
                 script {
-                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 913524910759.dkr.ecr.us-east-1.amazonaws.com'
+                        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 913524910759.dkr.ecr.us-east-1.amazonaws.com
                         sh 'docker tag frontend:latest 913524910759.dkr.ecr.us-east-1.amazonaws.com/frontend:latest'
                         sh 'docker push 913524910759.dkr.ecr.us-east-1.amazonaws.com/frontend:latest'
                 }
